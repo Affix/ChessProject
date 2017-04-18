@@ -8,6 +8,9 @@ class ChessBoard
     const MAX_BOARD_WIDTH = 7;
     const MAX_BOARD_HEIGHT = 7;
 
+    const WHITE_START = 0;
+    const BLACK_START = 7;
+
     private $_pieces;
 
     public function __construct()
@@ -18,6 +21,18 @@ class ChessBoard
     public function add(Pawn $pawn, $_xCoordinate, $_yCoordinate, PieceColorEnum $pieceColor)
     {
         //throw new \ErrorException("Need to implement ChessBoard.add() ");
+        if($this->isLegalBoardPosition($_xCoordinate, $_yCoordinate))
+        {
+          $pawn->setXCoordinate($_xCoordinate);
+          $pawn->setYCoordinate($_yCoordinate);
+          $this->_pieces[$_xCoordinate][$_yCoordinate] = $pawn;
+        }
+        else {
+          $_piece->setXCoordinate(-1);
+          $_piece->setYCoordinate(-1);
+        }
+
+        return $this;
     }
 
     /** @return: boolean */
@@ -31,7 +46,19 @@ class ChessBoard
         }
         else
         {
-          return True;
+          if(empty($this->_pieces[$_xCoordinate][$_yCoordinate]))
+          {
+            return True;
+          }
+          else
+          {
+            return False;
+          }
         }
+    }
+
+    public function isDuplicatePosition()
+    {
+
     }
 }
