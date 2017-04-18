@@ -15,5 +15,9 @@
     "autoload": {
         "psr-0": { "LogicNow\\": "src/" },
         "psr-4": { "LogicNow\\": "src/" }
+    },
+
+    "scripts": {
+        "test": "vendor/bin/phpunit --testsuite chess"
     }
 }
