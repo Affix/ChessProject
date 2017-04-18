@@ -17,7 +17,7 @@ class ChessBoard
 
     public function add(Pawn $pawn, $_xCoordinate, $_yCoordinate, PieceColorEnum $pieceColor)
     {
-        throw new \ErrorException("Need to implement ChessBoard.add() ");
+        //throw new \ErrorException("Need to implement ChessBoard.add() ");
     }
 
     /** @return: boolean */
