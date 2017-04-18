@@ -83,7 +83,7 @@ class Pawn
         if($this->getPieceColor()->getValue()  == "BLACK" &&
           $old_x === $newX &&
           $old_y != $newY &&
-          $old_y - $new_y <= self::MOVE_LIMIT)
+          $old_y - $new_y <= $_move_limit)
         {
           printf("Setting new coordinate");
           $this->setYCoordinate($newY);
