@@ -2,13 +2,19 @@
 
 namespace LogicNow\Test;
 
+require_once('src/ChessBoard.php');
+require_once('src/Pawn.php');
+require_once('src/PieceColorEnum.php');
+require_once('src/MovementTypeEnum.php');
+
 use LogicNow\ChessBoard;
 use LogicNow\MovementTypeEnum;
 use LogicNow\Pawn;
 use LogicNow\PieceColorEnum;
+use PHPUnit\Framework\TestCase;
 
 
-class PawnTest extends \PHPUnit_Framework_TestCase
+class PawnTest extends TestCase
 {
 
     /** @var  ChessBoard */
