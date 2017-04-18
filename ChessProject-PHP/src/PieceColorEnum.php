@@ -1,44 +1,17 @@
 <?php
-
 namespace LogicNow;
+use MyCLabs\Enum\Enum;
 
-class PieceColorEnum
+class PieceColorEnum extends Enum
 {
-    private static $_instance = false;
-    private static $_white;
-    private static $_black;
+    const BLACK = 'BLACK';
+    const WHITE = 'WHITE';
 
-    private $_id;
-
-    private function __construct($_id)
-    {
-        $this->_id = $_id;
+    public static function BLACK() {
+        return new PieceColorEnum(self::BLACK);
     }
 
-    /** @return: PieceColorEnum */
-    public static function WHITE()
-    {
-        self::initialise();
-
-        return self::$_white;
+    public static function WHITE() {
+        return new PieceColorEnum(self::WHITE);
     }
-
-    /** @return: PieceColorEnum */
-    public static function BLACK()
-    {
-        self::initialise();
-
-        return self::$_black;
-    }
-
-    private static function initialise()
-    {
-        if (self::$_instance) {
-            return;
-        }
-
-        self::$_white = new PieceColorEnum(1);
-        self::$_black = new PieceColorEnum(2);
-    }
-
 }

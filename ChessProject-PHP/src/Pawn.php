@@ -15,7 +15,7 @@ class Pawn
     /** @var  int */
     private $_yCoordinate;
 
-    const MAX_COUNT = 8;
+    const MAX_COUNT = 7;
 
     public function __construct(PieceColorEnum $pieceColorEnum)
     {

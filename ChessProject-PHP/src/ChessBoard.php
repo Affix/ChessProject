@@ -21,15 +21,18 @@ class ChessBoard
     public function add(Pawn $pawn, $_xCoordinate, $_yCoordinate, PieceColorEnum $pieceColor)
     {
         //throw new \ErrorException("Need to implement ChessBoard.add() ");
-        if($this->isLegalBoardPosition($_xCoordinate, $_yCoordinate))
+        $counts = $this->countPawns($this->_pieces);
+        $color = $pawn->getPieceColor()->getValue();
+        if($this->isLegalBoardPosition($_xCoordinate, $_yCoordinate) &&
+          $counts[$color] < $pawn::MAX_COUNT)
         {
           $pawn->setXCoordinate($_xCoordinate);
           $pawn->setYCoordinate($_yCoordinate);
           $this->_pieces[$_xCoordinate][$_yCoordinate] = $pawn;
         }
         else {
-          $_piece->setXCoordinate(-1);
-          $_piece->setYCoordinate(-1);
+          $pawn->setXCoordinate(-1);
+          $pawn->setYCoordinate(-1);
         }
 
         return $this;
@@ -57,8 +60,27 @@ class ChessBoard
         }
     }
 
-    public function isDuplicatePosition()
+    public function countPawns(array $_board)
     {
+      $_counts = [
+        'BLACK' => 0,
+        'WHITE' => 0
+      ];
 
+      foreach($_board as $_row)
+      {
+        foreach($_row as $_tile)
+        {
+          if($_tile instanceof Pawn)
+          {
+            $_color = $_tile->getPieceColor()->getValue();
+            if (!isset($_counts[$_color])) {
+              $_counts[$_color] = 0;
+            }
+            $_counts[$_color]++;
+          }
+        }
+      }
+      return $_counts;
     }
 }
