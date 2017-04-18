@@ -23,6 +23,15 @@ class ChessBoard
     /** @return: boolean */
     public function isLegalBoardPosition($_xCoordinate, $_yCoordinate)
     {
-        throw new \ErrorException("Need to implement ChessBoard.isLegalBoardPosition()");
+        if($_yCoordinate > self::MAX_BOARD_HEIGHT ||
+           $_xCoordinate > self::MAX_BOARD_WIDTH ||
+           $_xCoordinate < 0 || $_yCoordinate < 0)
+        {
+          return False;
+        }
+        else
+        {
+          return True;
+        }
     }
 }
