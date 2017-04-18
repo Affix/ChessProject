@@ -16,6 +16,9 @@ class Pawn
     private $_yCoordinate;
 
     const MAX_COUNT = 7;
+    const MOVE_LIMIT = 1;
+
+    private $_hasMoved = false;
 
     public function __construct(PieceColorEnum $pieceColorEnum)
     {
@@ -68,7 +71,30 @@ class Pawn
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
-        throw new \Exception("Need to implement Pawn.Move()");
+        $old_x = $this->getXCoordinate();
+        $old_y = $this->getYCoordinate();
+        $_move_limit = self::MOVE_LIMIT;
+
+        if(!$this->_hasMoved)
+        {
+          $_move_limit = 2;
+        }
+
+        if($this->getPieceColor()->getValue()  == "BLACK" &&
+          $old_x === $newX &&
+          $old_y != $newY &&
+          $old_y - $new_y <= self::MOVE_LIMIT)
+        {
+          printf("Setting new coordinate");
+          $this->setYCoordinate($newY);
+        }
+
+        if($this->getPieceColor()->getValue()  == "WHITE" &&
+          $old_x === $newX &&
+          $newY - $old_y <= $_move_limit)
+        {
+          $this->setYCoordinate($newY);
+        }
     }
 
     public function toString()
