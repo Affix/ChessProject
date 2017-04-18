@@ -69,6 +69,11 @@ class Pawn
         $this->_pieceColorEnum = $value;
     }
 
+    public function setHasMoved(bool $value)
+    {
+      $this->_hasMoved = $value;
+    }
+
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
         $old_x = $this->getXCoordinate();
@@ -85,15 +90,20 @@ class Pawn
           $old_y != $newY &&
           $old_y - $new_y <= $_move_limit)
         {
-          printf("Setting new coordinate");
           $this->setYCoordinate($newY);
+        }
+        else {
+          $this->setYCoordinate($old_y);
         }
 
         if($this->getPieceColor()->getValue()  == "WHITE" &&
           $old_x === $newX &&
-          $newY - $old_y <= $_move_limit)
+          intval($old_y - $newY) <= $_move_limit)
         {
           $this->setYCoordinate($newY);
+        }
+        else {
+          $this->setYCoordinate($old_y);
         }
     }
 

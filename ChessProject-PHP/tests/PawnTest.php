@@ -61,4 +61,21 @@ class PawnTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $this->_testSubject->getYCoordinate());
     }
 
+    public function testPawn_Move_Two_Spaces_Initial_Move_UpdatesCoordinates()
+    {
+        $this->_chessBoard->add($this->_testSubject, 6, 6, PieceColorEnum::BLACK());
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 4);
+        $this->assertEquals(6, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(4, $this->_testSubject->getYCoordinate());
+    }
+
+    public function testPawn_Cant_Move_Two_Spaces_After_Initial_Move()
+    {
+        $this->_testSubject->setHasMoved(true);
+        $this->_chessBoard->add($this->_testSubject, 6, 6, PieceColorEnum::BLACK());
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 4);
+        $this->assertEquals(6, $this->_testSubject->getXCoordinate());
+        $this->assertNotEquals(4, $this->_testSubject->getYCoordinate());
+    }
+
 }
