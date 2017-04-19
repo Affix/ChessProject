@@ -18,8 +18,11 @@ class PawnMovementValidator implements MovementValidator
     $this->_piece = $piece;
     if($movementType == MovementTypeEnum::CAPTURE())
     {
+      $chessBoard = $this->_piece->getChesssBoard();
+      $capturedPiece = $chessBoard->getPieceAtCoordinate($x, $y);
       return version_compare($old_y, $y, $this->getMathematicsOperator()) &&
-      abs($y - $old_y) <= $this->get_move_limit();
+      abs($y - $old_y) <= $this->get_move_limit()
+      && $capturedPiece->getPieceColor() != $piece->getPieceColor();
     }
     else {
       return $this->validate_move($x, $y);
