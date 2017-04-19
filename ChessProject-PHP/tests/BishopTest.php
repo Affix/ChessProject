@@ -37,7 +37,7 @@ class BishopTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 
-    public function testBishop_Move_IllegalCoordinates_Diagonal_DoesMove()
+    public function testBishop_Move_llegalCoordinates_Diagonal_DoesMove()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
         $this->_testSubject->move(MovementTypeEnum::MOVE(), 7, 4);
@@ -45,10 +45,18 @@ class BishopTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(4, $this->_testSubject->getYCoordinate());
     }
 
-    public function testBishop_Move_llegalCoordinates_Left_DoesNotMove()
+    public function testBishop_Move_IllegalCoordinates_Left_DoesNotMove()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
         $this->_testSubject->move(MovementTypeEnum::MOVE(), 5, 3);
+        $this->assertEquals(6, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
+    }
+
+    public function testBishop_Move_IllegalCoordinates_Forward_DoesNotMove()
+    {
+        $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 5);
         $this->assertEquals(6, $this->_testSubject->getXCoordinate());
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
