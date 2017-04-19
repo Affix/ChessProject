@@ -37,28 +37,20 @@ class KnightTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 
-    public function testKnight_Move_IllegalCoordinates_Right_DoesMove()
+    public function testKnight_Move_LegalCoordinates_UpdatesCoordinates()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-        $this->_testSubject->move(MovementTypeEnum::MOVE(), 7, 3);
-        $this->assertEquals(7, $this->_testSubject->getXCoordinate());
-        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
-    }
-
-    public function testKnight_Move_IllegalCoordinates_Left_DoesMove()
-    {
-        $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-        $this->_testSubject->move(MovementTypeEnum::MOVE(), 5, 3);
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), 5, 1);
         $this->assertEquals(5, $this->_testSubject->getXCoordinate());
-        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
+        $this->assertEquals(1, $this->_testSubject->getYCoordinate());
     }
 
-    public function testKnight_Move_LegalCoordinates_Forward_UpdatesCoordinates()
+    public function testKnight_Move_LegalCoordinates_Backwards_UpdatesCoordinates()
     {
-        $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-        $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 2);
+        $this->_chessBoard->add($this->_testSubject, 5, 1, PieceColorEnum::BLACK());
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 3);
         $this->assertEquals(6, $this->_testSubject->getXCoordinate());
-        $this->assertEquals(2, $this->_testSubject->getYCoordinate());
+        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 
 
