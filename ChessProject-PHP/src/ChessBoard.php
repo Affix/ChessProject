@@ -3,6 +3,7 @@
 namespace LogicNow;
 
 use LogicNow\Pieces\Pawn;
+use LogicNow\Pieces\King;
 
 class ChessBoard
 {
@@ -20,21 +21,21 @@ class ChessBoard
         $this->_pieces = array_fill(0, self::MAX_BOARD_WIDTH, array_fill(0, self::MAX_BOARD_HEIGHT, 0));
     }
 
-    public function add(Pawn $pawn, $_xCoordinate, $_yCoordinate, PieceColorEnum $pieceColor)
+    public function add(Piece $piece, $_xCoordinate, $_yCoordinate, PieceColorEnum $pieceColor)
     {
         //throw new \ErrorException("Need to implement ChessBoard.add() ");
         $counts = $this->countPawns($this->_pieces);
-        $color = $pawn->getPieceColor()->getValue();
+        $color = $piece->getPieceColor()->getValue();
         if($this->isLegalBoardPosition($_xCoordinate, $_yCoordinate) &&
-          $counts[$color] < $pawn::MAX_COUNT)
+          $counts[$color] < $piece::MAX_COUNT)
         {
-          $pawn->setXCoordinate($_xCoordinate);
-          $pawn->setYCoordinate($_yCoordinate);
-          $this->_pieces[$_xCoordinate][$_yCoordinate] = $pawn;
+          $piece->setXCoordinate($_xCoordinate);
+          $piece->setYCoordinate($_yCoordinate);
+          $this->_pieces[$_xCoordinate][$_yCoordinate] = $piece;
         }
         else {
-          $pawn->setXCoordinate(-1);
-          $pawn->setYCoordinate(-1);
+          $piece->setXCoordinate(-1);
+          $piece->setYCoordinate(-1);
         }
 
         return $this;
