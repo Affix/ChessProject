@@ -17,7 +17,7 @@ class Pawn extends Piece
     const MOVE_LIMIT = 1;
     const FIRST_MOVE_LIMIT = 2;
 
-    private $_hasMoved = false;
+    protected $_hasMoved = false;
 
     public function __construct(PieceColorEnum $pieceColorEnum)
     {
@@ -29,42 +29,22 @@ class Pawn extends Piece
       $this->_hasMoved = $value;
     }
 
+    public function getHasMoved()
+    {
+      return $this->_hasMoved;
+    }
+
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
         $old_x = $this->getXCoordinate();
         $old_y = $this->getYCoordinate();
 
 
-        if(
-          $old_x === $newX &&
-          version_compare($old_y, $newY, $this->getMathematicsOperator()) &&
-          abs($newY - $old_y) <= $this->get_move_limit())
+        if($this->_validator->validate($this, $newX, $newY))
         {
           $this->setYCoordinate($newY);
+          $this->setXCoordinate($newX);
         }
     }
 
-    private function get_move_limit()
-    {
-      if(!$this->_hasMoved)
-      {
-        return self::FIRST_MOVE_LIMIT;
-      }
-      else {
-        return self::MOVE_LIMIT;
-      }
-    }
-
-    private function getMathematicsOperator()
-    {
-      $_colour = $this->getPieceColor();
-
-      if($_colour == "BLACK")
-      {
-        return "<";
-      }
-      else {
-        return ">";
-      }
-    }
 }
