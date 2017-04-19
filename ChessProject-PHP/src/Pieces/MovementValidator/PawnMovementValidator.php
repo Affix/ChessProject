@@ -14,6 +14,10 @@ class PawnMovementValidator implements MovementValidator
     $old_x = $piece->getXCoordinate();
     $old_y = $piece->getYCoordinate();
     $this->_piece = $piece;
+    if($piece->getCaptured())
+    {
+      return false;
+    }
     return $old_x === $x &&
     version_compare($old_y, $y, $this->getMathematicsOperator()) &&
     abs($y - $old_y) <= $this->get_move_limit();
