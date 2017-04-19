@@ -5,6 +5,7 @@ namespace LogicNow\Pieces;
 
 use LogicNow\Piece;
 use LogicNow\MovementTypeEnum;
+use LogicNow\PieceColorEnum;
 
 
 class King extends Piece
@@ -12,6 +13,12 @@ class King extends Piece
 
     const MAX_COUNT = 1;
     const MOVE_LIMIT = 1;
+
+
+    public function __construct(PieceColorEnum $pieceColorEnum)
+    {
+      parent::__construct($pieceColorEnum);
+    }
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {

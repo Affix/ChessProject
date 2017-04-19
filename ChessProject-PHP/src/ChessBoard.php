@@ -2,6 +2,7 @@
 
 namespace LogicNow;
 
+use LogicNow\Piece;
 use LogicNow\Pieces\Pawn;
 use LogicNow\Pieces\King;
 
@@ -32,6 +33,7 @@ class ChessBoard
           $piece->setXCoordinate($_xCoordinate);
           $piece->setYCoordinate($_yCoordinate);
           $this->_pieces[$_xCoordinate][$_yCoordinate] = $piece;
+          $piece->setChessBoard($this);
         }
         else {
           $piece->setXCoordinate(-1);

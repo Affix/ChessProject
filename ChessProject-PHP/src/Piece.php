@@ -3,13 +3,14 @@ namespace LogicNow;
 
 use LogicNow\PieceColorEnum;
 use LogicNow\MovementTypeEnum;
+use LogicNow\ChessBoard;
 
 abstract class Piece
 {
   /** @var PieceColorEnum */
   private $_pieceColorEnum;
   /** @var  ChessBoard */
-  private $_chessBoard;
+  protected $_chessBoard;
   /** @var  int */
   private $_xCoordinate;
   /** @var  int */

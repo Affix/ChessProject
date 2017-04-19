@@ -5,12 +5,18 @@ namespace LogicNow\Pieces;
 
 use LogicNow\Piece;
 use LogicNow\MovementTypeEnum;
+use LogicNow\PieceColorEnum;
 
 
 class Rook extends Piece
 {
 
     const MAX_COUNT = 2;
+
+    public function __construct(PieceColorEnum $pieceColorEnum)
+    {
+      parent::__construct($pieceColorEnum);
+    }
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
@@ -19,7 +25,8 @@ class Rook extends Piece
 
       if(abs($old_x - $newX) <= self::MOVE_LIMIT &&
          abs($old_y - $newY) <= self::MOVE_LIMIT &&
-         !$this->isDiagonalMove($newX, $newY))
+         $this->isLegalPath($newX, $newY)
+       )
       {
         $this->setYCoordinate($newY);
         $this->setXCoordinate($newX);
@@ -31,4 +38,36 @@ class Rook extends Piece
       return $newX != $this->getXCoordinate() &&
              $newY != $this->getYCoordinate();
     }
+
+    private function isLegalPath($newX, $newY)
+    {
+      $_chessBoard = $this->getChesssBoard();
+      $_oldX = $this->getXCoordinate();
+      $_oldY = $this->getYCoordinate();
+      if(!$this->isDiagonalMove($newX, $newY))
+      {
+        if($newX != $_oldX)
+        {
+          for($i = ($_oldX + 1); $i <= $newX; $i++)
+          {
+            if(!$_chessBoard->isLegalBoardPosition($i, $newY))
+            {
+              return false;
+            }
+          }
+          return true;
+        }
+        else {
+          for($i = ($_oldY + 1); $i <= $newY; $i++)
+          {
+            if(!$_chessBoard->isLegalBoardPosition($newX, $i))
+            {
+              return false;
+            }
+          }
+          return true;
+        }
+      }
+    }
+
 }

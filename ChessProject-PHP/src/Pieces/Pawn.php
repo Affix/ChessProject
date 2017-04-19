@@ -5,6 +5,7 @@ namespace LogicNow\Pieces;
 
 use LogicNow\Piece;
 use LogicNow\MovementTypeEnum;
+use LogicNow\PieceColorEnum;
 
 
 class Pawn extends Piece
@@ -15,6 +16,11 @@ class Pawn extends Piece
     const FIRST_MOVE_LIMIT = 2;
 
     private $_hasMoved = false;
+
+    public function __construct(PieceColorEnum $pieceColorEnum)
+    {
+      parent::__construct($pieceColorEnum);
+    }
 
     public function setHasMoved(bool $value)
     {

@@ -74,7 +74,7 @@ class RookTest extends \PHPUnit_Framework_TestCase
     {
       $this->_blockingPawn = new Pawn(PieceColorEnum::WHITE());
       $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
-      $this->_chessBoard->add($this->_testSubject, 6, 4, PieceColorEnum::BLACK());
+      $this->_chessBoard->add($this->_blockingPawn, 6, 4, PieceColorEnum::BLACK());
       $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 5);
       $this->assertEquals(6, $this->_testSubject->getXCoordinate());
       $this->assertEquals(3, $this->_testSubject->getYCoordinate());
