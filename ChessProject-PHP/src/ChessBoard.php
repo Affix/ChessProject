@@ -2,6 +2,8 @@
 
 namespace LogicNow;
 
+use LogicNow\Pieces\Pawn;
+
 class ChessBoard
 {
 

@@ -4,7 +4,7 @@ namespace LogicNow\Test;
 
 use LogicNow\ChessBoard;
 use LogicNow\PieceColorEnum;
-use LogicNow\Pawn;
+use LogicNow\Pieces\Pawn;
 use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
