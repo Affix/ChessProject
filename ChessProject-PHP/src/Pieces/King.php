@@ -13,8 +13,6 @@ class King extends Piece
     const MAX_COUNT = 1;
     const MOVE_LIMIT = 1;
 
-    private $_hasMoved = false;
-
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
         $old_x = $this->getXCoordinate();
