@@ -8,8 +8,6 @@ use LogicNow\MovementTypeEnum;
 use LogicNow\PieceColorEnum;
 use LogicNow\Pieces\MovementValidator\RookMovementValidator;
 
-
-
 class Rook extends Piece
 {
 

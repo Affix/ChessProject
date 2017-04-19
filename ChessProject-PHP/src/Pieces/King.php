@@ -2,7 +2,6 @@
 
 namespace LogicNow\Pieces;
 
-
 use LogicNow\Piece;
 use LogicNow\MovementTypeEnum;
 use LogicNow\PieceColorEnum;
@@ -10,7 +9,6 @@ use LogicNow\Pieces\MovementValidator\KingMovementValidator;
 
 class King extends Piece
 {
-
     const MAX_COUNT = 1;
     const MOVE_LIMIT = 1;
 
