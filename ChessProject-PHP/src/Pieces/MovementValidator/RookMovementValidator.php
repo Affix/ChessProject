@@ -4,12 +4,14 @@ namespace LogicNow\Pieces\MovementValidator;
 use LogicNow\Piece;
 use LogicNow\Pieces\Rook;
 use LogicNow\ChessBoard;
+use LogicNow\MovementTypeEnum;
+
 
 class RookMovementValidator implements MovementValidator
 {
   protected $_piece;
 
-  public function validate(Piece $piece, $x, $y)
+  public function validate(Piece $piece, $x, $y, MovementTypeEnum $movementType)
   {
     $old_x = $piece->getXCoordinate();
     $old_y = $piece->getYCoordinate();

@@ -19,7 +19,7 @@ class King extends Piece
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
-        if($this->_validator->validate($this, $newX, $newY))
+        if($this->_validator->validate($this, $newX, $newY, $movementTypeEnum))
         {
           $this->setYCoordinate($newY);
           $this->setXCoordinate($newX);

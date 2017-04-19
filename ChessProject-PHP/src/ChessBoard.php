@@ -43,6 +43,11 @@ class ChessBoard
         return $this;
     }
 
+    public function getPieceAtCoordinate($x, $y)
+    {
+      return $this->_pieces[$x][$y];
+    }
+
     /** @return: boolean */
     public function isLegalBoardPosition($_xCoordinate, $_yCoordinate)
     {

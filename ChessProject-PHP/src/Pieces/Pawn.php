@@ -8,6 +8,7 @@ use LogicNow\MovementTypeEnum;
 use LogicNow\PieceColorEnum;
 use LogicNow\Pieces\MovementValidator\PawnMovementValidator;
 
+
 class Pawn extends Piece
 {
 
@@ -34,8 +35,15 @@ class Pawn extends Piece
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
     {
-        if($this->_validator->validate($this, $newX, $newY))
+        if($this->_validator->validate($this, $newX, $newY, $movementTypeEnum))
         {
+          if($movementTypeEnum == MovementTypeEnum::CAPTURE())
+          {
+            $board = $this->getChesssBoard();
+            $board->getPieceAtCoordinate($newX, $newY)->setCaptured(true);
+            $this->setYCoordinate($newY);
+            $this->setXCoordinate($newX);
+          }
           $this->setYCoordinate($newY);
           $this->setXCoordinate($newX);
         }
