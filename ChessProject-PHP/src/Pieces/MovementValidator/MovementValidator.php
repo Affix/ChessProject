@@ -1,9 +1,9 @@
 <?php
 namespace LogicNow\Pieces\MovementValidator;
 
-use LogicNow\Pieces\Piece;
+use LogicNow\Piece;
 
-abstract class MovementValidator
+interface MovementValidator
 {
-    public function validate(Piece $piece, $newX, $newY);
+    public function validate(Piece $piece, $x, $y);
 }

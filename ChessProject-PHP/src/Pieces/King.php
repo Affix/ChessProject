@@ -6,7 +6,7 @@ namespace LogicNow\Pieces;
 use LogicNow\Piece;
 use LogicNow\MovementTypeEnum;
 use LogicNow\PieceColorEnum;
-
+use LogicNow\Pieces\MovementValidator\KingMovementValidator;
 
 class King extends Piece
 {
@@ -14,10 +14,9 @@ class King extends Piece
     const MAX_COUNT = 1;
     const MOVE_LIMIT = 1;
 
-
     public function __construct(PieceColorEnum $pieceColorEnum)
     {
-      parent::__construct($pieceColorEnum);
+      parent::__construct($pieceColorEnum, new KingMovementValidator());
     }
 
     public function move(MovementTypeEnum $movementTypeEnum, $newX, $newY)
@@ -25,8 +24,7 @@ class King extends Piece
         $old_x = $this->getXCoordinate();
         $old_y = $this->getYCoordinate();
 
-        if(abs($old_x - $newX) <= self::MOVE_LIMIT &&
-           abs($old_y - $newY) <= self::MOVE_LIMIT)
+        if($this->_validator->validate($this, $newX, $newY))
         {
           $this->setYCoordinate($newY);
           $this->setXCoordinate($newX);

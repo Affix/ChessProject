@@ -16,12 +16,15 @@ abstract class Piece
   /** @var  int */
   private $_yCoordinate;
 
+  protected $_validator;
+
   const MAX_COUNT = 1;
   const MOVE_LIMIT = 7;
 
-  public function __construct(PieceColorEnum $pieceColorEnum)
+  public function __construct(PieceColorEnum $pieceColorEnum, $validator)
   {
       $this->_pieceColorEnum = $pieceColorEnum;
+      $this->setValidator($validator);
   }
 
   public function getChesssBoard()
@@ -66,6 +69,16 @@ abstract class Piece
   public function setPieceColor(PieceColorEnum $value)
   {
       $this->_pieceColorEnum = $value;
+  }
+
+  public function setValidator($validator)
+  {
+    $this->_validator = $validator;
+  }
+
+  public function getValidator()
+  {
+    return $this->_validator;
   }
 
   public function toString()
