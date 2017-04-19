@@ -44,7 +44,7 @@ class Pawn extends Piece
 
         if($this->getPieceColor()->getValue()  == "WHITE" &&
           $old_x === $newX &&
-          intval($old_y - $newY) <= $_move_limit)
+          $old_y - $newY <= $_move_limit)
         {
           $this->setYCoordinate($newY);
         }
