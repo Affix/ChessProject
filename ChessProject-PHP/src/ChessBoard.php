@@ -24,7 +24,6 @@ class ChessBoard
 
     public function add(Piece $piece, $_xCoordinate, $_yCoordinate, PieceColorEnum $pieceColor)
     {
-        //throw new \ErrorException("Need to implement ChessBoard.add() ");
         $counts = $this->countPawns($this->_pieces);
         $color = $piece->getPieceColor()->getValue();
         if($this->isLegalBoardPosition($_xCoordinate, $_yCoordinate) &&
