@@ -18,10 +18,17 @@ class Rook extends Piece
       $old_y = $this->getYCoordinate();
 
       if(abs($old_x - $newX) <= self::MOVE_LIMIT &&
-         abs($old_y - $newY) <= self::MOVE_LIMIT)
+         abs($old_y - $newY) <= self::MOVE_LIMIT &&
+         !$this->isDiagonalMove($newX, $newY))
       {
         $this->setYCoordinate($newY);
         $this->setXCoordinate($newX);
       }
+    }
+
+    private function isDiagonalMove($newX, $newY)
+    {
+      return $newX != $this->getXCoordinate() &&
+             $newY != $this->getYCoordinate();
     }
 }

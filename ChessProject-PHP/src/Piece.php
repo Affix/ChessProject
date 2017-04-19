@@ -16,7 +16,7 @@ abstract class Piece
   private $_yCoordinate;
 
   const MAX_COUNT = 1;
-  const MOVE_LIMIT = false;
+  const MOVE_LIMIT = 7;
 
   public function __construct(PieceColorEnum $pieceColorEnum)
   {
