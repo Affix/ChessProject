@@ -34,25 +34,23 @@ class RookMovementValidator implements MovementValidator
     {
       if($newX != $_oldX)
       {
-        for($i = ($_oldX + 1); $i <= $newX; $i++)
-        {
-          if(!$_chessBoard->isLegalBoardPosition($i, $newY))
-          {
-            return false;
-          }
-        }
-        return true;
+        return $this->isPathClear($newY, $_oldX, $newX);
       }
       else {
-        for($i = ($_oldY + 1); $i <= $newY; $i++)
-        {
-          if(!$_chessBoard->isLegalBoardPosition($newX, $i))
-          {
-            return false;
-          }
-        }
-        return true;
+        return $this->isPathClear($newX, $_oldY, $newY);
       }
     }
+  }
+
+  private function isPathClear($static, $from, $to)
+  {
+    for($i = ($from + 1); $i <= $to; $i++)
+    {
+      if(!$this->_piece->getChesssBoard()->isLegalBoardPosition($static, $i))
+      {
+        return false;
+      }
+    }
+    return true;
   }
 }
