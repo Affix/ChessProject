@@ -41,15 +41,15 @@ class BishopTest extends \PHPUnit_Framework_TestCase
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
         $this->_testSubject->move(MovementTypeEnum::MOVE(), 7, 4);
-        $this->assertEquals(6, $this->_testSubject->getXCoordinate());
-        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
+        $this->assertEquals(7, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(4, $this->_testSubject->getYCoordinate());
     }
 
     public function testBishop_Move_llegalCoordinates_Left_DoesNotMove()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
         $this->_testSubject->move(MovementTypeEnum::MOVE(), 5, 3);
-        $this->assertEquals(5, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(6, $this->_testSubject->getXCoordinate());
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 }
