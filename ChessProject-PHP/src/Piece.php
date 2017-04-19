@@ -18,6 +18,8 @@ abstract class Piece
 
   protected $_validator;
 
+  protected $_captured = false;
+
   const MAX_COUNT = 1;
   const MOVE_LIMIT = 7;
 
@@ -37,6 +39,21 @@ abstract class Piece
       $this->_chessBoard = $chessBoard;
   }
 
+  public function setCaptured(bool $captured)
+  {
+    $this->_captured = $captured;
+    if($captured)
+    {
+      $this->setXCoordinate(-1);
+      $this->setYCoordinate(-1);_
+    }
+  }
+
+  public function getCaptured()
+  {
+    return $this->_captured;
+  }
+  
   /** @return int */
   public function getXCoordinate()
   {
