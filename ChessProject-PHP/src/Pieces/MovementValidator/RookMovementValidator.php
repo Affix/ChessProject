@@ -27,7 +27,6 @@ class RookMovementValidator implements MovementValidator
 
   private function isLegalPath($newX, $newY)
   {
-    $_chessBoard = $this->_piece->getChesssBoard();
     $_oldX = $this->_piece->getXCoordinate();
     $_oldY = $this->_piece->getYCoordinate();
     if(!$this->isDiagonalMove($newX, $newY))
