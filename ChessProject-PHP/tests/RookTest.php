@@ -37,7 +37,7 @@ class RookTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 
-    public function testRook_Move_IllegalCoordinates_Right_DoesMove()
+    public function testRook_Move_llegalCoordinates_Right_DoesMove()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
         $this->_testSubject->move(MovementTypeEnum::MOVE(), 7, 3);
@@ -45,7 +45,15 @@ class RookTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(3, $this->_testSubject->getYCoordinate());
     }
 
-    public function testRook_Move_IllegalCoordinates_Left_DoesMove()
+    public function testRook_Move_IllegalCoordinates_Diagonal_DoesNotMove()
+    {
+        $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
+        $this->_testSubject->move(MovementTypeEnum::MOVE(), 7, 4);
+        $this->assertEquals(6, $this->_testSubject->getXCoordinate());
+        $this->assertEquals(3, $this->_testSubject->getYCoordinate());
+    }
+
+    public function testRook_Move_llegalCoordinates_Left_DoesMove()
     {
         $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
         $this->_testSubject->move(MovementTypeEnum::MOVE(), 5, 3);
