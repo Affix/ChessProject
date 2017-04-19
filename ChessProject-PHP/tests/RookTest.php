@@ -5,6 +5,7 @@ namespace LogicNow\Test;
 use LogicNow\ChessBoard;
 use LogicNow\MovementTypeEnum;
 use LogicNow\Pieces\Rook;
+use LogicNow\Pieces\Pawn;
 use LogicNow\PieceColorEnum;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
@@ -69,5 +70,14 @@ class RookTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, $this->_testSubject->getYCoordinate());
     }
 
+    public function testRook_Move_IllegalCoordinates_Blocked_Path_DoesNotMove()
+    {
+      $this->_blockingPawn = new Pawn(PieceColorEnum::WHITE());
+      $this->_chessBoard->add($this->_testSubject, 6, 3, PieceColorEnum::BLACK());
+      $this->_chessBoard->add($this->_testSubject, 6, 4, PieceColorEnum::BLACK());
+      $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 5);
+      $this->assertEquals(6, $this->_testSubject->getXCoordinate());
+      $this->assertEquals(3, $this->_testSubject->getYCoordinate());
+    }
 
 }
