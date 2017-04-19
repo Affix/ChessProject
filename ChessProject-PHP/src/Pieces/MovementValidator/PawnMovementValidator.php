@@ -11,35 +11,41 @@ class PawnMovementValidator implements MovementValidator
 {
   protected $_piece;
 
+  private $oldX;
+  private $oldY;
+
   public function validate(Piece $piece, $x, $y, MovementTypeEnum $movementType)
   {
-    $old_x = $piece->getXCoordinate();
-    $old_y = $piece->getYCoordinate();
+    $this->oldX = $piece->getXCoordinate();
+    $this->oldY = $piece->getYCoordinate();
     $this->_piece = $piece;
     if($movementType == MovementTypeEnum::CAPTURE())
     {
-      $chessBoard = $this->_piece->getChesssBoard();
-      $capturedPiece = $chessBoard->getPieceAtCoordinate($x, $y);
-      return version_compare($old_y, $y, $this->getMathematicsOperator()) &&
-      abs($y - $old_y) <= $this->get_move_limit()
-      && $capturedPiece->getPieceColor() != $piece->getPieceColor();
+      return $this->validateCapture($x, $y);
     }
     else {
-      return $this->validate_move($x, $y);
+      return $this->validateMove($x, $y);
     }
   }
 
-  private function validate_move($x, $y)
+  private function validateCapture($x, $y)
   {
-    $old_x = $this->_piece->getXCoordinate();
-    $old_y = $this->_piece->getYCoordinate();
+    $chessBoard = $this->_piece->getChesssBoard();
+    $capturedPiece = $chessBoard->getPieceAtCoordinate($x, $y);
+    return version_compare($this->oldY, $y, $this->getMathematicsOperator()) &&
+    abs($y - $this->oldY) <= $this->get_move_limit()
+    && $capturedPiece->getPieceColor() != $this->_piece->getPieceColor();
+  }
+
+  private function validateMove($x, $y)
+  {
     if($this->_piece->getCaptured())
     {
       return false;
     }
-    return $old_x === $x &&
-    version_compare($old_y, $y, $this->getMathematicsOperator()) &&
-    abs($y - $old_y) <= $this->get_move_limit();
+    return $this->oldX === $x &&
+    version_compare($this->oldY, $y, $this->getMathematicsOperator()) &&
+    abs($y - $this->oldY) <= $this->get_move_limit();
   }
   private function get_move_limit()
   {
