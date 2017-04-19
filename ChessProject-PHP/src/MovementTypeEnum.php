@@ -1,44 +1,19 @@
 <?php
-
 namespace LogicNow;
+use MyCLabs\Enum\Enum;
 
-class MovementTypeEnum
+class MovementTypeEnum extends Enum
 {
-    private static $_instance = false;
-    private static $_move;
-    private static $_capture;
+    const MOVE = 'MOVE';
+    const CAPTURE = 'CAPTURE';
 
-    private $_id;
-
-    private function __construct($_id)
-    {
-        $this->_id = $_id;
-    }
-
-    /** @return: MovementTypeEnum */
     public static function MOVE()
     {
-        self::initialise();
-
-        return self::$_move;
+        return new MovementTypeEnum(self::MOVE);
     }
 
-    /** @return: MovementTypeEnum */
     public static function CAPTURE()
     {
-        self::initialise();
-
-        return self::$_capture;
+        return new MovementTypeEnum(self::CAPTURE);
     }
-
-    private static function initialise()
-    {
-        if (self::$_instance) {
-            return;
-        }
-
-        self::$_move = new MovementTypeEnum(1);
-        self::$_capture = new MovementTypeEnum(2);
-    }
-
 }
