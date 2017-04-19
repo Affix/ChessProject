@@ -12,6 +12,7 @@ class Pawn extends Piece
 
     const MAX_COUNT = 7;
     const MOVE_LIMIT = 1;
+    const FIRST_MOVE_LIMIT = 2;
 
     private $_hasMoved = false;
 
@@ -24,32 +25,38 @@ class Pawn extends Piece
     {
         $old_x = $this->getXCoordinate();
         $old_y = $this->getYCoordinate();
-        $_move_limit = self::MOVE_LIMIT;
 
-        if(!$this->_hasMoved)
-        {
-          $_move_limit = 2;
-        }
 
-        if($this->getPieceColor()->getValue()  == "BLACK" &&
+        if(
           $old_x === $newX &&
-          $old_y != $newY &&
-          $new_y - $oldY <= $_move_limit)
+          version_compare($old_y, $newY, $this->getMathematicsOperator()) &&
+          abs($newY - $old_y) <= $this->get_move_limit())
         {
           $this->setYCoordinate($newY);
         }
-        else {
-          $this->setYCoordinate($old_y);
-        }
+    }
 
-        if($this->getPieceColor()->getValue()  == "WHITE" &&
-          $old_x === $newX &&
-          $old_y - $newY <= $_move_limit)
-        {
-          $this->setYCoordinate($newY);
-        }
-        else {
-          $this->setYCoordinate($old_y);
-        }
+    private function get_move_limit()
+    {
+      if(!$this->_hasMoved)
+      {
+        return self::FIRST_MOVE_LIMIT;
+      }
+      else {
+        return self::MOVE_LIMIT;
+      }
+    }
+
+    private function getMathematicsOperator()
+    {
+      $_colour = $this->getPieceColor();
+
+      if($_colour == "BLACK")
+      {
+        return "<";
+      }
+      else {
+        return ">";
+      }
     }
 }
