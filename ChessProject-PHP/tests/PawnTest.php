@@ -86,12 +86,13 @@ class PawnTest extends \PHPUnit_Framework_TestCase
       $this->_testSubject->move(MovementTypeEnum::CAPTURE(), 5, 5);
       $this->assertEquals(5, $this->_testSubject->getXCoordinate());
       $this->assertEquals(5, $this->_testSubject->getYCoordinate());
-      $this->assertEquals(true, this->_capturedPiece->getCaptured());
+      $this->assertEquals(true, $this->_capturedPiece->getCaptured());
     }
 
     public function testPawn_Cant_Move_If_Piece_Is_Captured()
     {
         $this->_testSubject->setHasMoved(true);
+        $this->_testSubject->setCaptured(true);
         $this->_chessBoard->add($this->_testSubject, 6, 6, PieceColorEnum::BLACK());
         $this->_testSubject->move(MovementTypeEnum::MOVE(), 6, 5);
         $this->assertEquals(6, $this->_testSubject->getXCoordinate());

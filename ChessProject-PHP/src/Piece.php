@@ -45,7 +45,7 @@ abstract class Piece
     if($captured)
     {
       $this->setXCoordinate(-1);
-      $this->setYCoordinate(-1);_
+      $this->setYCoordinate(-1);
     }
   }
 
@@ -53,7 +53,7 @@ abstract class Piece
   {
     return $this->_captured;
   }
-  
+
   /** @return int */
   public function getXCoordinate()
   {
